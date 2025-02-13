@@ -18,6 +18,9 @@
 
   --box-shadow: 0 2rem 3rem var(--color-light);
 
+  /* dialogs */
+  --dialog-backdrop: rgba(0, 0, 0, 0.2);
+
   /* For error messages */
   --error-background-color: #d32f2f;
   --error-color: #fff;
@@ -31,6 +34,7 @@
   --color-dark-variant: #a3bdcc;
   --color-background: #181a1e;
   --box-shadow: 0 2rem 3rem var(--color-light);
+  --dialog-backdrop: rgba(255, 255, 255, 0.2);
   /* For error messages */
   --error-background-color: #212121;
   --error-color: #ff5252;
@@ -88,7 +92,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.2); /* Semi-transparent */
+  background: var(--dialog-backdrop); /* Dialog's backdrop */
   display: flex;
   justify-content: center;
   align-items: center;

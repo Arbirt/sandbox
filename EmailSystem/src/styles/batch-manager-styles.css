@@ -26,6 +26,8 @@
   --card-padding: 1.87;
   --padding-1: 1.2rem;
 
+  /* dialogs */
+  --dialog-backdrop: rgba(0, 0, 0, 0.2);
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
@@ -36,6 +38,7 @@
   --color-light: rgba(0, 0, 0, 0.4);
   --color-dark-variant: #a3bdcc;
   --color-background: #181a1e;
+  --dialog-backdrop: rgba(255, 255, 255, 0.2);
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
