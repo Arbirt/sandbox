@@ -147,7 +147,7 @@ aside .sidebar {
   box-shadow: var(--box-shadow);
   border-radius: 15px;
   width: 90%;
-  height: 88vh;
+  height: 88.5vh; /* i added this .5 to make it the same height as the table */
   position: relative;
   top: 1.5rem;
   transition: all 0.3s ease;
