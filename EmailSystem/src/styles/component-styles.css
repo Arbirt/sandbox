@@ -184,13 +184,13 @@
 }
 .error-text {
   margin: -10px 0 6px 0;
-  color: #ff000080;
+  color: #ff4545bb;
   font-size: 11px;
   font-weight: lighter;
 }
 
 .error-input {
-  border: 2px solid #ff000080 !important;
+  border: 2px solid #ff4545bb !important;
   padding: 8px;
   &:focus {
     padding: 8px !important; /* This removes the animation when the user clicks on an errored field*/
