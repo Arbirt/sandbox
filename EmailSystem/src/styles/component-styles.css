@@ -1,0 +1,227 @@
+:root {
+  --color-primary: #3c6078;
+  --color-secondary: #f99500;
+  --color-success: #00f995;
+  --color-warning: #ffc107;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+  --color-row-select: #ffe3d0;
+
+  --table-border-radius: 1.5rem;
+  --border-radius-1: 1.2rem;
+  --card-padding: 1.87;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 2rem 3rem var(--color-light);
+
+  /* For error messages */
+  --error-background-color: #d32f2f;
+  --error-color: #fff;
+}
+
+.dark-mode-variables {
+  --color-row-select: #756b62;
+  --color-white: #202528;
+  --color-dark: #edeffd;
+  --color-light: rgba(0, 0, 0, 0.4);
+  --color-dark-variant: #a3bdcc;
+  --color-background: #181a1e;
+  --box-shadow: 0 2rem 3rem var(--color-light);
+  /* For error messages */
+  --error-background-color: #212121;
+  --error-color: #ff5252;
+}
+
+/* ============== For toast notification (Error messages) ============== */
+
+.toast {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  top: -50px; /* Initially hidden */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--error-background-color);
+  color: var(--error-color);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: 200;
+  opacity: 0;
+  animation: slideDown 0.5s forwards, fadeOut 0.5s forwards 4.5s;
+}
+
+@keyframes slideDown {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    top: 20px;
+    opacity: 1;
+  }
+  to {
+    top: -50px;
+    opacity: 0;
+  }
+}
+
+/* ============== Modal Background Overlay ============== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal-content {
+  background: var(--color-white);
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.modal-content h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Labels */
+.modal-content label {
+  margin-top: 15px;
+  /* font-weight: bold; */
+}
+
+/* Inputs and Select */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark-variant);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.modal-content input:focus,
+.modal-content select:focus {
+  border: 2px solid var(--color-dark-variant);
+  padding: 7px; /* This removes the animation when the user clicks on a field*/
+}
+
+/* Disable Input */
+.modal-content input:read-only {
+  background-color: var(--color-white);
+  color: grey;
+  border: 0px solid grey;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 10px;
+  width: 45%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: var(--color-dark-variant);
+  color: var(--color-white);
+}
+
+.submit-btn {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.cancel-btn:hover {
+  background: var(--color-dark);
+}
+
+.submit-btn:hover {
+  background: orange;
+}
+.error-text {
+  margin: -10px 0 6px 0;
+  color: #ff000080;
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.error-input {
+  border: 2px solid #ff000080 !important;
+  padding: 8px;
+  &:focus {
+    padding: 8px !important; /* This removes the animation when the user clicks on an errored field*/
+    border: 2px solid #ff0000 !important;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes flash-red {
+  0% {
+    background-color: #ff000080;
+  }
+  99% {
+    background-color: #ff000080;
+  }
+  100% {
+    background-color: var(--color-secondary);
+  } /* Reset to original */
+}
+
+.shake {
+  animation: shake 0.25s ease-in-out, flash-red 0.3s ease-in-out;
+}

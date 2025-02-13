@@ -25,8 +25,10 @@ import { priorityMapping, statusMapping } from "../utilities/enum";
 import "../styles/batch-manager-styles.css";
 import { useEffect, useState } from "react";
 import { useToast } from "../components/toast-notification";
+import BatchCreateDialog from "../components/batch-create-dialog";
 
 const BatchManager = () => {
+  const [batchCreateDialog, setBatchCreateDialog] = useState(false);
   const [contextMenu, setContextMenu] = useState(null); //For right click
   const [batchesData, setBatchesData] = useState([]); //The data that is mapped to the table
   const [isFilterOpen, setIsFilterOpen] = useState(false); //Handles filter component rendering
@@ -102,6 +104,7 @@ const BatchManager = () => {
       onClick={handleCloseMenu}
       onKeyDown={(e) => {
         if (e.code === "Escape") {
+          setBatchCreateDialog(false);
           handleCloseMenu();
         }
       }}
@@ -193,6 +196,7 @@ const BatchManager = () => {
             className="create"
             onClick={() => {
               toast.addToast("Example Error");
+              setBatchCreateDialog(true);
             }}
           >
             Create
@@ -422,6 +426,12 @@ const BatchManager = () => {
           <li onClick={() => handleMenuClick("properties")}>Properties</li>
         </ul>
       )}
+      <BatchCreateDialog
+        isOpen={batchCreateDialog}
+        closeModal={() => {
+          setBatchCreateDialog(false);
+        }}
+      />
     </div>
   );
 };

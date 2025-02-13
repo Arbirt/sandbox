@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import "../styles/toast-js.css";
+import "../styles/component-styles.css";
 import { RiErrorWarningLine } from "@remixicon/react";
 
 const MAX_TOASTS = 3; // Limit the number of visible toasts
