@@ -26,9 +26,11 @@ import "../styles/batch-manager-styles.css";
 import { useEffect, useState } from "react";
 import { useToast } from "../components/toast-notification";
 import BatchCreateDialog from "../components/batch-create-dialog";
+import BatchUpdateDialog from "../components/batch-update-dialog";
 
 const BatchManager = () => {
-  const [batchCreateDialog, setBatchCreateDialog] = useState(false);
+  const [batchUpdateDialog, setBatchUpdateDialog] = useState(false); // Batch-update dialog
+  const [batchCreateDialog, setBatchCreateDialog] = useState(false); // Batch-create dialog
   const [contextMenu, setContextMenu] = useState(null); //For right click
   const [batchesData, setBatchesData] = useState([]); //The data that is mapped to the table
   const [isFilterOpen, setIsFilterOpen] = useState(false); //Handles filter component rendering
@@ -90,6 +92,7 @@ const BatchManager = () => {
 
     if (action === "edit") {
       console.log(`Editing: ${selectedRows[0].title}`);
+      setBatchUpdateDialog(true);
     } else if (action === "properties") {
       console.log(`Properties of: ${selectedRows[0].title}`);
     }
@@ -104,6 +107,7 @@ const BatchManager = () => {
       onClick={handleCloseMenu}
       onKeyDown={(e) => {
         if (e.code === "Escape") {
+          setBatchUpdateDialog(false);
           setBatchCreateDialog(false);
           handleCloseMenu();
         }
@@ -431,6 +435,13 @@ const BatchManager = () => {
         closeModal={() => {
           setBatchCreateDialog(false);
         }}
+      />
+      <BatchUpdateDialog
+        isOpen={batchUpdateDialog}
+        closeModal={() => {
+          setBatchUpdateDialog(false);
+        }}
+        batchUpdateData={selectedRows[0]}
       />
     </div>
   );

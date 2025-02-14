@@ -145,7 +145,8 @@
 .modal-content input:read-only {
   background-color: var(--color-white);
   color: grey;
-  border: 0px solid grey;
+  padding: 8px !important;
+  border: 1px solid transparent;
 }
 
 /* Modal Buttons */

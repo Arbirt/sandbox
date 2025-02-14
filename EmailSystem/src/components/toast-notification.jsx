@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import "../styles/component-styles.css";
 import { RiErrorWarningLine } from "@remixicon/react";
+import PropTypes from "prop-types";
 
 const MAX_TOASTS = 3; // Limit the number of visible toasts
 const ToastContext = createContext();
@@ -37,6 +38,9 @@ export const ToastProvider = ({ children }) => {
       </div>
     </ToastContext.Provider>
   );
+};
+ToastProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useToast = () => useContext(ToastContext);
