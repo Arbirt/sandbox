@@ -154,6 +154,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  width: 100%;
 }
 
 .cancel-btn,
@@ -174,6 +175,30 @@
   background: var(--color-secondary);
   color: var(--color-white);
   font-weight: bold;
+}
+
+.confirm-btn {
+  padding: 10px;
+  width: 45%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #d32f2f;
+  color: #fff;
+  font-weight: bold;
+}
+.confirm-btn:hover {
+  background: #9b1e1e;
+}
+.confirm-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.confirm-form label {
+  margin: 0 !important;
 }
 
 .cancel-btn:hover {

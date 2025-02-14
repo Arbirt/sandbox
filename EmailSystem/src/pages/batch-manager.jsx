@@ -27,10 +27,16 @@ import { useEffect, useState } from "react";
 import { useToast } from "../components/toast-notification";
 import BatchCreateDialog from "../components/batch-create-dialog";
 import BatchUpdateDialog from "../components/batch-update-dialog";
+import ConfirmationDialog from "../components/confirmation-dialog";
 
 const BatchManager = () => {
+  /* ===== Dilaogs ===== */
   const [batchUpdateDialog, setBatchUpdateDialog] = useState(false); // Batch-update dialog
   const [batchCreateDialog, setBatchCreateDialog] = useState(false); // Batch-create dialog
+  const [batchDeleteDialog, setBatchDeleteDialog] = useState(false); // Batch-delete dialog
+
+  /* ===== ===== */
+
   const [contextMenu, setContextMenu] = useState(null); //For right click
   const [batchesData, setBatchesData] = useState([]); //The data that is mapped to the table
   const [isFilterOpen, setIsFilterOpen] = useState(false); //Handles filter component rendering
@@ -100,6 +106,12 @@ const BatchManager = () => {
     setContextMenu(null);
   };
 
+  const handleBatchDelete = () => {
+    selectedRows.forEach((row) => {
+      console.log("Deleted this row: ", row);
+    });
+  };
+
   return (
     <div
       tabIndex={0}
@@ -107,6 +119,7 @@ const BatchManager = () => {
       onClick={handleCloseMenu}
       onKeyDown={(e) => {
         if (e.code === "Escape") {
+          setBatchDeleteDialog(false);
           setBatchUpdateDialog(false);
           setBatchCreateDialog(false);
           handleCloseMenu();
@@ -331,10 +344,7 @@ const BatchManager = () => {
                     : "action-btn"
                 }
                 onClick={() => {
-                  console.log(
-                    "Sending these data to delete request :",
-                    selectedRows
-                  );
+                  setBatchDeleteDialog(true);
                 }}
               >
                 <RiDeleteBin2Line className="acition-btn-icon" />
@@ -442,6 +452,19 @@ const BatchManager = () => {
           setBatchUpdateDialog(false);
         }}
         batchUpdateData={selectedRows[0]}
+      />
+      <ConfirmationDialog
+        isOpen={batchDeleteDialog}
+        closeModal={() => {
+          setBatchDeleteDialog(false);
+        }}
+        onConfirm={handleBatchDelete}
+        title={"Batch Delete"}
+        message={`Are you sure you want to delete ${selectedRows.length} Batch${
+          selectedRows.length === 1 ? "" : "es"
+        } ?`}
+        inProgress={false}
+        warning={true}
       />
     </div>
   );
