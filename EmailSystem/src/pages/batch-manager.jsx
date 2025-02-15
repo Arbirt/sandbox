@@ -28,18 +28,21 @@ import { useToast } from "../components/toast-notification";
 import BatchCreateDialog from "../components/batch-create-dialog";
 import BatchUpdateDialog from "../components/batch-update-dialog";
 import ConfirmationDialog from "../components/confirmation-dialog";
+import CustomDatePicker from "../components/custom-date-picker";
+import dayjs from "dayjs";
+import BatchFilterDialog from "../components/batch-filter-dialog";
 
 const BatchManager = () => {
   /* ===== Dilaogs ===== */
   const [batchUpdateDialog, setBatchUpdateDialog] = useState(false); // Batch-update dialog
   const [batchCreateDialog, setBatchCreateDialog] = useState(false); // Batch-create dialog
   const [batchDeleteDialog, setBatchDeleteDialog] = useState(false); // Batch-delete dialog
-
+  const [batchFilterDialog, setBatchFilterDialog] = useState(false); // Batch-filter dialog
   /* ===== ===== */
 
+  const [selectedDate, setSelectedDate] = useState(dayjs());
   const [contextMenu, setContextMenu] = useState(null); //For right click
   const [batchesData, setBatchesData] = useState([]); //The data that is mapped to the table
-  const [isFilterOpen, setIsFilterOpen] = useState(false); //Handles filter component rendering
   const [isDarkMode, setIsDarkMode] = useState(false); //Handles dark mode toggle
   const [selectedRows, setSelectedRows] = useState([]); //Selected rows from the table
 
@@ -231,63 +234,13 @@ const BatchManager = () => {
             <button
               className="filter-btn"
               onClick={() => {
-                setIsFilterOpen((prev) => !prev);
+                setBatchFilterDialog(true);
               }}
             >
-              {isFilterOpen ? <RiEqualizerFill /> : <RiEqualizerLine />}
+              {batchFilterDialog ? <RiEqualizerFill /> : <RiEqualizerLine />}
             </button>
           </div>
-          {isFilterOpen && (
-            <>
-              <button className="apply">Apply</button>
-              <button className="reset">Reset</button>
-            </>
-          )}
         </div>
-        {isFilterOpen && (
-          <div className="filter">
-            <div className="filter-container">
-              <p>Template</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>User</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>Status</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>From</p>
-              <input type="date" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>From</p>
-              <input type="date" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>Batch Title</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>From Stage</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>Stage</p>
-              <input type="text" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>To</p>
-              <input type="date" className="filter-field" />
-            </div>
-            <div className="filter-container">
-              <p>To</p>
-              <input type="date" className="filter-field" />
-            </div>
-          </div>
-        )}
         <div className="batches">
           <div className="actions-bar">
             <div className="actions1">
@@ -332,7 +285,10 @@ const BatchManager = () => {
                   }}
                 />
               </button>
-
+              <CustomDatePicker
+                selectedDate={selectedDate}
+                onChange={setSelectedDate}
+              />
               <button
                 disabled={
                   selectedRows.length <= 0 ||
@@ -452,6 +408,10 @@ const BatchManager = () => {
           setBatchUpdateDialog(false);
         }}
         batchUpdateData={selectedRows[0]}
+      />
+      <BatchFilterDialog
+        isOpen={batchFilterDialog}
+        closeModal={setBatchFilterDialog}
       />
       <ConfirmationDialog
         isOpen={batchDeleteDialog}

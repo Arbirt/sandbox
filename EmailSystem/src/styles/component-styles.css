@@ -255,3 +255,145 @@
 .shake {
   animation: shake 0.25s ease-in-out, flash-red 0.3s ease-in-out;
 }
+
+/* ===== Date Picker ===== */
+
+.custom-date-picker {
+  border: 1px solid var(--color-background);
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-date-picker .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.custom-date-picker .header button {
+  background: none;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var(--color-light);
+  }
+}
+
+.custom-date-picker table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-date-picker th,
+.custom-date-picker td {
+  text-align: center;
+  padding: 8px;
+}
+
+.custom-date-picker td.day {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* .custom-date-picker td.day:hover {
+  background-color: #f0f0f010;
+} */
+
+.custom-date-picker td.selected {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.custom-date-picker td.empty {
+  background-color: transparent;
+}
+
+/* ===== Date Range Pickers ===== */
+.custom-date-range-picker {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-date-range-picker .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.custom-date-range-picker .header button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-date-range-picker table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-date-range-picker th,
+.custom-date-range-picker td {
+  text-align: center;
+  padding: 8px;
+}
+
+.custom-date-range-picker td.day {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.custom-date-range-picker td.day:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.custom-date-range-picker td.start-date {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px 0 0 4px;
+}
+
+.custom-date-range-picker td.end-date {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0 4px 4px 0;
+}
+
+.custom-date-range-picker td.in-range {
+  background-color: #e3f2fd;
+}
+
+.custom-date-range-picker td.empty {
+  background-color: transparent;
+}
+/* ===== End of Date Range Pickers ===== */
+
+.date-pickers-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.date-pickers-container p {
+  width: 46px;
+  text-wrap: nowrap;
+  text-align: center;
+}
