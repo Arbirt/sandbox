@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "../styles/component-styles.css";
 import "../styles/batch-manager-styles.css";
 import { Controller, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const validTemplates = ["Template 1", "Template 2"]; // The values of the templates the exist inside the data base
 const validStatuses = ["Ready", "Checked-Out", "In Progress", "Has Error"]; // The values of the templates that exist inside the data base
@@ -16,7 +16,7 @@ const validStages = [
   "Batch Error Handler",
 ]; // The values of teh users that exist inside the data base
 
-const BatchFilterDialog = ({ isOpen, closeModal }) => {
+const BatchFilterDialog = ({ isOpen, closeModal, setFilter, filter }) => {
   /* State Management */
   // const [currentSelectedDatePicker, setCurrentSelectedDatePicker] =
   //   useState(null); // To check which input opened the date picker
@@ -44,8 +44,14 @@ const BatchFilterDialog = ({ isOpen, closeModal }) => {
   });
   const onSubmit = (data) => {
     console.log("Filter Data : ", data);
+    setFilter(data);
     closeModal();
   };
+  useEffect(() => {
+    if (isOpen || filter) {
+      reset(filter);
+    }
+  }, [filter, isOpen, reset]);
   return (
     <>
       {isOpen && (
@@ -90,7 +96,6 @@ const BatchFilterDialog = ({ isOpen, closeModal }) => {
                             </option>
                           ))}
                         </select>
-                        {field.value && <button>X</button>}
                       </>
                     )}
                   />
@@ -277,6 +282,7 @@ const BatchFilterDialog = ({ isOpen, closeModal }) => {
                   className="cancel-btn"
                   onClick={() => {
                     reset();
+                    setFilter(defaultValues);
                     closeModal();
                   }}
                 >
@@ -287,6 +293,7 @@ const BatchFilterDialog = ({ isOpen, closeModal }) => {
                   className="submit-btn"
                   onClick={() => {
                     reset();
+                    setFilter(defaultValues);
                   }}
                 >
                   Clear
@@ -305,6 +312,8 @@ const BatchFilterDialog = ({ isOpen, closeModal }) => {
 BatchFilterDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  filter: PropTypes.object.isRequired,
 };
 
 export default BatchFilterDialog;

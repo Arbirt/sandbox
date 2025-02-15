@@ -31,6 +31,7 @@ import ConfirmationDialog from "../components/confirmation-dialog";
 import CustomDatePicker from "../components/custom-date-picker";
 import dayjs from "dayjs";
 import BatchFilterDialog from "../components/batch-filter-dialog";
+import FilterBubbles from "../components/filter-bubbles";
 
 const BatchManager = () => {
   /* ===== Dilaogs ===== */
@@ -40,6 +41,18 @@ const BatchManager = () => {
   const [batchFilterDialog, setBatchFilterDialog] = useState(false); // Batch-filter dialog
   /* ===== ===== */
 
+  const [filter, setFilter] = useState({
+    batchName: "",
+    template: "",
+    user: "",
+    status: "",
+    stage: "",
+    fromStage: "",
+    editDateFrom: "",
+    editDateTo: "",
+    createDateFrom: "",
+    createDateTo: "",
+  });
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const [contextMenu, setContextMenu] = useState(null); //For right click
   const [batchesData, setBatchesData] = useState([]); //The data that is mapped to the table
@@ -54,6 +67,9 @@ const BatchManager = () => {
     setBatchesData(data);
   }, []);
 
+  useEffect(() => {
+    console.log("Filter's value : ", filter);
+  }, [filter]);
   // Toggle row selection with the entire batch object
   const handleRowClick = (batch) => {
     setSelectedRows((prevSelectedRows) => {
@@ -113,6 +129,9 @@ const BatchManager = () => {
     selectedRows.forEach((row) => {
       console.log("Deleted this row: ", row);
     });
+  };
+  const removeFilter = (field) => {
+    setFilter((prevFilters) => ({ ...prevFilters, [field]: "" }));
   };
 
   return (
@@ -241,6 +260,7 @@ const BatchManager = () => {
             </button>
           </div>
         </div>
+        <FilterBubbles filters={filter} onRemoveFilter={removeFilter} />
         <div className="batches">
           <div className="actions-bar">
             <div className="actions1">
@@ -412,6 +432,8 @@ const BatchManager = () => {
       <BatchFilterDialog
         isOpen={batchFilterDialog}
         closeModal={setBatchFilterDialog}
+        setFilter={setFilter}
+        filter={filter}
       />
       <ConfirmationDialog
         isOpen={batchDeleteDialog}
