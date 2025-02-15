@@ -2,6 +2,19 @@ import PropTypes from "prop-types";
 import "../styles/component-styles.css";
 import { RiCloseLine } from "@remixicon/react";
 
+const keyMapping = {
+  template: "Template",
+  user: "User",
+  status: "Status",
+  batchName: "Batch Title",
+  fromStage: "From Stage",
+  stage: "Stage",
+  editDateFrom: "Edited from",
+  editDateTo: "Edited to",
+  createDateFrom: "create from",
+  createDateTo: "create to",
+};
+
 const FilterBubbles = ({ filters, onRemoveFilter }) => {
   return (
     <div
@@ -17,7 +30,7 @@ const FilterBubbles = ({ filters, onRemoveFilter }) => {
         if (value) {
           return (
             <div key={key} className="filter-bubble">
-              <span>{`${key}: ${value}`}</span>
+              <span>{`${keyMapping[key]}: ${value}`}</span>
               <button onClick={() => onRemoveFilter(key)}>
                 <RiCloseLine />
               </button>
