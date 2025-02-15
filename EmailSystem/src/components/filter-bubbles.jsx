@@ -11,8 +11,8 @@ const keyMapping = {
   stage: "Stage",
   editDateFrom: "Edited from",
   editDateTo: "Edited to",
-  createDateFrom: "create from",
-  createDateTo: "create to",
+  createDateFrom: "Create from",
+  createDateTo: "Create to",
 };
 
 const FilterBubbles = ({ filters, onRemoveFilter }) => {
