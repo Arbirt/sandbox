@@ -305,10 +305,10 @@ const BatchManager = () => {
                   }}
                 />
               </button>
-              <CustomDatePicker
+              {/* <CustomDatePicker
                 selectedDate={selectedDate}
                 onChange={setSelectedDate}
-              />
+              /> */}
               <button
                 disabled={
                   selectedRows.length <= 0 ||
