@@ -40,7 +40,7 @@ const BatchFilterDialog = ({ isOpen, closeModal, setFilter, filter }) => {
     createDateTo: "",
   };
   const { control, handleSubmit, reset, setValue } = useForm({
-    defaultValues: defaultValues,
+    defaultValues: filter,
   });
   const onSubmit = (data) => {
     console.log("Filter Data : ", data);
