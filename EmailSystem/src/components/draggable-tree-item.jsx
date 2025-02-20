@@ -13,7 +13,7 @@ const DraggableTreeItem = ({ file }) => {
   return (
     <div style={{ display: "flex", alignItems: "center", margin: "2px 0px" }}>
       <button onClick={handleCheck} style={{backgroundColor:"transparent"}}>
-        {!check ? <RiCheckboxBlankLine /> : <RiCheckboxLine />}
+        {!check ? <RiCheckboxBlankLine /> : <RiCheckboxLine style={{ color: "#f99500" }} />}
       </button>
 
       <h3

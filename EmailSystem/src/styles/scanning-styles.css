@@ -850,6 +850,9 @@ th {
   color: var(--color-dark);
   background-color:var(--color-background);
 }
+.toolbar-icon{
+  color: #f99500;
+}
 input[type="checkbox"]{
   color: var(--color-secondary) !important;
   background-color: var(--color-secondary) !important;

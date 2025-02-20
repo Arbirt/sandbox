@@ -14,6 +14,7 @@ import {
   RiCloseCircleLine,
   RiCircleLine,
   RiCircleFill,
+  RiRadioButtonFill,
 } from "@remixicon/react";
 
 import { getBatches } from "../database/batchesDatabase";
@@ -186,7 +187,7 @@ const ScanningAndAcquisition = () => {
                 <h3>Insert at End</h3>
               </div>
               <div className="scan-modes-group-child">
-                <RiCircleFill />
+                <RiRadioButtonFill style={{ color: "#f99500" }} />
                 <h3>Insert at Current Location</h3>
               </div>
 
@@ -204,7 +205,7 @@ const ScanningAndAcquisition = () => {
           <div className="scan-search">
             {/* Toolbar */}
             <button className="toolbar-btn">
-              <RiRefreshLine className="toolbar-icon" /> Reload
+              <RiRefreshLine  className="toolbar-icon" /> Reload
             </button>
             <button className="toolbar-btn">
               <RiFileReduceLine className="toolbar-icon" /> Delete Page
