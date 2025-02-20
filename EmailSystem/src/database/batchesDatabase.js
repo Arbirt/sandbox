@@ -18,3 +18,12 @@ export const getListOfPages = () => {
   }));
   return { data };
 };
+
+export const getBatchPages = () => {
+  const data = Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    fileName: `page 0000${i + 1}`,
+    
+  }));
+  return { data };
+};

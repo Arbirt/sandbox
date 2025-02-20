@@ -148,7 +148,7 @@ const BatchManager = () => {
         }
       }}
     >
-      <aside>
+      <aside className="bm-aside">
         <div className="toggle">
           <div className="logo">
             <img src={ArcmateLogo} alt="ArcMateLogo" />
