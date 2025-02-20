@@ -1,5 +1,5 @@
 import {
-  RiArrowDownWideLine,
+  RiArrowDownSLine,
   RiArrowLeftSLine,
   RiArrowRightSLine,
   RiCheckboxBlankLine,
@@ -369,7 +369,7 @@ const BatchManager = () => {
                   >
                     <td>
                       <button className="expand-arrow">
-                        <RiArrowDownWideLine />
+                        <RiArrowDownSLine />
                       </button>
                     </td>
                     <td>{batch.title}</td>
