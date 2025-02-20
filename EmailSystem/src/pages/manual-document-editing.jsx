@@ -17,10 +17,16 @@ import {
   RiPlayLine,
   RiResetRightLine,
   RiSearch2Line,
+  RiSkipLeftLine,
+  RiSkipRightLine,
   RiSunLine,
 } from "@remixicon/react";
 import ArcmateLogo from "../../public/ArcMateCapture.png";
-import { getBatchDocuments, getBatches } from "../database/batchesDatabase";
+import {
+  batchDocumentsNames,
+  getBatchDocuments,
+  getBatches,
+} from "../database/batchesDatabase";
 import { priorityMapping, statusMapping } from "../utilities/enum";
 import "../styles/manual-document-editing-styles.css";
 import { useEffect, useState } from "react";
@@ -151,83 +157,68 @@ const ManualDocumentEditing = () => {
       <aside className="mde-aside">
         <div className="toggle" style={{ maxHeight: "96dvh" }}>
           <div className="mde-logo">Manual Document Editing</div>
-          <div className="close" id="close-btn">
-            <RiCloseLine />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-evenly",
+              width: "100%",
+            }}
+          >
+            <button className="create">Add document</button>
           </div>
 
           <div className="documents-table">
-            <div className="actions-bar">
-              <div className="actions1" style={{ margin: "0" }}>
-                {/* <input type="checkbox" className="checked action-btn" /> */}
-                {selectedRows.length === 0 && (
-                  <div
-                    className="action-btn"
-                    onClick={() => {
-                      setSelectedRows([...batchDocumentsData]);
-                    }}
-                  >
-                    <RiCheckboxBlankLine className="acition-btn-icon" />
-                  </div>
-                )}
-                {selectedRows.length !== batchDocumentsData.length &&
-                  selectedRows.length !== 0 && (
-                    <div
-                      className="action-btn"
-                      onClick={() => {
-                        setSelectedRows([]);
-                      }}
-                    >
-                      <RiCheckboxIndeterminateLine className="acition-btn-icon" />
-                    </div>
-                  )}
-                {selectedRows.length === batchDocumentsData.length && (
-                  <div
-                    className="action-btn"
-                    onClick={() => {
-                      setSelectedRows([]);
-                    }}
-                  >
-                    <RiCheckboxLine className="acition-btn-icon" />
-                  </div>
-                )}
-
-                <button className="action-btn refetch">
-                  <RiResetRightLine
-                    className="acition-btn-icon"
-                    style={{
-                      transform: "rotate(120deg)",
-                    }}
-                  />
-                </button>
-                {/* <CustomDatePicker
-                  selectedDate={selectedDate}
-                  onChange={setSelectedDate}
-                /> */}
-                <button
-                  disabled={
-                    selectedRows.length <= 0 ||
-                    selectedRows.some((batch) => batch.b_Status === 1)
-                  }
-                  className={
-                    selectedRows.length <= 0
-                      ? "action-btn no-opacity"
-                      : "action-btn"
-                  }
-                  onClick={() => {
-                    setBatchDeleteDialog(true);
+            <div className="actions-bar" style={{ padding: "1rem 0.8rem" }}>
+              <select className="document-form-filter">
+                <option value="" style={{ display: "none" }}>
+                  filter by form
+                </option>
+                {batchDocumentsNames.map((name, index) => (
+                  <option key={index} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+              <div
+                style={{
+                  height: "30px",
+                  width: "1px",
+                  backgroundColor: "transparent",
+                  padding: "1px",
+                  margin: "5px 30px",
+                }}
+              ></div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <RiSkipLeftLine />
+                <RiArrowLeftSLine />
+                <input
+                  type="text"
+                  style={{
+                    width: "5rem",
+                    height: "1.6rem",
+                    borderRadius: "10px",
+                    border: "1px solid #ffc107",
+                    textAlign: "center",
                   }}
-                >
-                  <RiDeleteBin2Line className="acition-btn-icon" />
-                </button>
-              </div>
-              <div className="actions2">
-                <span style={{ textWrap: "nowrap" }}>1 out of 10</span>
-                <div className="action-btn">
-                  <RiArrowLeftSLine className="acition-btn-icon" />
-                </div>
-                <div className="action-btn">
-                  <RiArrowRightSLine className="acition-btn-icon" />
-                </div>
+                  maxLength={7}
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+                    if (e.target.value.startsWith("0")) {
+                      e.target.value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+                    }
+                  }}
+                />
+
+                <RiArrowRightSLine />
+                <RiSkipRightLine />
               </div>
             </div>
             <div className="table-container">
@@ -269,6 +260,47 @@ const ManualDocumentEditing = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="actions-bar" style={{ padding: "1rem 0.8rem" }}>
+              <div
+                style={{
+                  height: "30px",
+                  width: "1px",
+                  backgroundColor: "transparent",
+                  padding: "1px",
+                  margin: "5px 30px",
+                }}
+              ></div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <RiSkipLeftLine />
+                <RiArrowLeftSLine />
+                <input
+                  type="text"
+                  style={{
+                    width: "5rem",
+                    height: "1.6rem",
+                    borderRadius: "10px",
+                    border: "1px solid #ffc107",
+                    textAlign: "center",
+                  }}
+                  maxLength={7}
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+                    if (e.target.value.startsWith("0")) {
+                      e.target.value = e.target.value.replace(/^0+/, ""); // Remove leading zeros
+                    }
+                  }}
+                />
+
+                <RiArrowRightSLine />
+                <RiSkipRightLine />
+              </div>
             </div>
           </div>
         </div>

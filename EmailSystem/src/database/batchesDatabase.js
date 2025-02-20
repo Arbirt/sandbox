@@ -19,10 +19,16 @@ export const getListOfPages = () => {
   return { data };
 };
 
-const batchDocumentsNames = ["Payment", "Cheque", "Barcode", "MICR", "OMR"];
+export const batchDocumentsNames = [
+  "Payment",
+  "Cheque",
+  "Barcode",
+  "MICR",
+  "OMR",
+];
 
 export const getBatchDocuments = () => {
-  const data = Array.from({ length: 50 }, (_, i) => ({
+  const data = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
     title: `${batchDocumentsNames[Math.ceil(Math.random() * 5) - 1]}_${i + 1}`,
     pageCount: `${Math.ceil(Math.random() * 10) - 1}`,
