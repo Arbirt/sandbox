@@ -773,3 +773,13 @@ th {
   font-size: 0.7rem;
   font-weight: 600;
 }
+.document-form-filter {
+  width: 40%;
+  min-width: fit-content;
+  padding: 0.4rem;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark-variant);
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
